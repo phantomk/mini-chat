@@ -23,7 +23,7 @@
     color       : #000;
   }
 
-  #chat {
+  #app {
     position : absolute;
     top      : 8px;
     left     : 8px;
@@ -38,8 +38,8 @@
     border-radius    : 0 8px 0 8px;
   }
   
-  .chat-x-select {}
-  .chat-x-clearfloat {
+  .app-x-select {}
+  .app-x-clearfloat {
     height     : 0      !important;
     float      : none   !important;
     visibility : hidden !important;

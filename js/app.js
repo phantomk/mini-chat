@@ -1,8 +1,6 @@
-var chat = (function () {
+var app = (function () {
     var initModule = function ( $container ) {
-        $container.html(
-            '<h1>chat</h1>'
-        );
+        app.shell.initModule( $container );
     };
     
     return {initModule: initModule};

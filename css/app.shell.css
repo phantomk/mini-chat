@@ -1,30 +1,30 @@
-.chat-shell-head, .chat-shell-head-logo, .chat-shell-head-account,
-.chat-shell-head-search, .chat-shell-main, .chat-shell-main-nav,
-.chat-shell-main-content, .chat-shell-footer, .chat-shell-chat,
-.chat-shell-modal {
+.app-shell-head, .app-shell-head-logo, .app-shell-head-account,
+.app-shell-head-search, .app-shell-main, .app-shell-main-nav,
+.app-shell-main-content, .app-shell-footer, .app-shell-chat,
+.app-shell-modal {
   position : absolute;
 }
-.chat-shell-head {
+.app-shell-head {
   top    : 0;
   left   : 0;
   right  : 0;
   height : 40px;
 }
-.chat-shell-head-logo {
+.app-shell-head-logo {
   top        : 4px;
   left       : 4px;
   height     : 32px;
   width      : 128px;
   background : orange;
 }
-.chat-shell-head-account {
+.app-shell-head-account {
   top        : 4px;
   right      : 0;
   width      : 64px;
   height     : 32px;
   background : green;
 }
-.chat-shell-head-search {
+.app-shell-head-search {
   top        : 4px;
   right      : 64px;
   width      : 248px;
@@ -32,41 +32,41 @@
   background : blue;
 }
 
-.chat-shell-main {
+.app-shell-main {
   top    : 40px;
   left   : 0;
   bottom : 40px;
   right  : 0;
 }
-.chat-shell-main-content,
-.chat-shell-main-nav {
+.app-shell-main-content,
+.app-shell-main-nav {
   top    : 0;
   bottom : 0;
 }
-.chat-shell-main-nav {
+.app-shell-main-nav {
   width  : 250px;
   background : #eee;
 }
-.chat-x-closed .chat-shell-main-nav {
-  width  : 0;
-}
+  .app-x-closed .app-shell-main-nav {
+    width  : 0;
+  }
 
-.chat-shell-main-content {
+.app-shell-main-content {
   left  : 250px;
   right : 0;
   background : #ddd;
 }
-.chat-x-closed .chat-shell-main-content {
-  left : 0;
-}
+  .app-x-closed .app-shell-main-content {
+    left : 0;
+  }
 
-.chat-shell-foot {
+.app-shell-foot {
   bottom : 0;
   left   : 0;
   right  : 0;
   height : 40px;
 }
-.chat-shell-chat {
+.app-shell-chat {
   bottom     : 0;
   right      : 0;
   width      : 300px;
@@ -74,7 +74,7 @@
   background : red;
   z-index    : 2;
 }
-.chat-shell-modal {
+.app-shell-modal {
   margin-top    : -200px;
   margin-left   : -200px;
   top           : 50%;
