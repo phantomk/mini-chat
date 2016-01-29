@@ -1,0 +1,87 @@
+.chat-shell-head, .chat-shell-head-logo, .chat-shell-head-account,
+.chat-shell-head-search, .chat-shell-main, .chat-shell-main-nav,
+.chat-shell-main-content, .chat-shell-footer, .chat-shell-chat,
+.chat-shell-modal {
+  position : absolute;
+}
+.chat-shell-head {
+  top    : 0;
+  left   : 0;
+  right  : 0;
+  height : 40px;
+}
+.chat-shell-head-logo {
+  top        : 4px;
+  left       : 4px;
+  height     : 32px;
+  width      : 128px;
+  background : orange;
+}
+.chat-shell-head-account {
+  top        : 4px;
+  right      : 0;
+  width      : 64px;
+  height     : 32px;
+  background : green;
+}
+.chat-shell-head-search {
+  top        : 4px;
+  right      : 64px;
+  width      : 248px;
+  height     : 32px;
+  background : blue;
+}
+
+.chat-shell-main {
+  top    : 40px;
+  left   : 0;
+  bottom : 40px;
+  right  : 0;
+}
+.chat-shell-main-content,
+.chat-shell-main-nav {
+  top    : 0;
+  bottom : 0;
+}
+.chat-shell-main-nav {
+  width  : 250px;
+  background : #eee;
+}
+.chat-x-closed .chat-shell-main-nav {
+  width  : 0;
+}
+
+.chat-shell-main-content {
+  left  : 250px;
+  right : 0;
+  background : #ddd;
+}
+.chat-x-closed .chat-shell-main-content {
+  left : 0;
+}
+
+.chat-shell-foot {
+  bottom : 0;
+  left   : 0;
+  right  : 0;
+  height : 40px;
+}
+.chat-shell-chat {
+  bottom     : 0;
+  right      : 0;
+  width      : 300px;
+  height     : 15px;
+  background : red;
+  z-index    : 2;
+}
+.chat-shell-modal {
+  margin-top    : -200px;
+  margin-left   : -200px;
+  top           : 50%;
+  left          : 50%;
+  width         : 400px;
+  height        : 400px;
+  background    : #fff;
+  border-radius : 3px;
+  z-index       : 1;
+}
