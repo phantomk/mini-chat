@@ -179,6 +179,9 @@ app.shell = (function () {
           schema_map : configMap.anchor_schema_map
       });
       
+      app.chat.configModule( {} );
+      app.chat.initModule( jqueryMap.$chat );
+      
       $(window)
         .bind( 'hashchange', onHasChange )
         .trigger( 'hashchange' );
