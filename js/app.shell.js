@@ -44,7 +44,7 @@ app.shell = (function () {
           KEYVAL:
           for ( key_name in arg_map ) {
               if (arg_map.hasOwnProperty( key_name ) ) {
-                  if ( key_name.indexOf('_') === 0 ) {
+                  if ( key_name.indexOf( '_' ) === 0 ) {
                       continue KEYVAL;
                   }
                   
