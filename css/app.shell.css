@@ -1,6 +1,6 @@
 .app-shell-head, .app-shell-head-logo, .app-shell-head-account,
 .app-shell-head-search, .app-shell-main, .app-shell-main-nav,
-.app-shell-main-content, .app-shell-footer, .app-shell-chat,
+.app-shell-main-content, .app-shell-footer,
 .app-shell-modal {
   position : absolute;
 }
@@ -66,19 +66,7 @@
   right  : 0;
   height : 40px;
 }
-.app-shell-chat {
-  bottom     : 0;
-  right      : 0;
-  width      : 300px;
-  height     : 15px;
-  cursor     : pointer; 
-  background : red;
-  border-radius : 5px 0 0 0; 
-  z-index    : 2;
-}
-  .app-shell-chat:hover {
-      background: #a00;
-  }
+
 .app-shell-modal {
   margin-top    : -200px;
   margin-left   : -200px;
@@ -89,4 +77,5 @@
   background    : #fff;
   border-radius : 3px;
   z-index       : 1;
+  display       : none; 
 }
