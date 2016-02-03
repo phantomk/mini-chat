@@ -2,8 +2,19 @@ app.chat = ( function () {
     var
         configMap = {
             main_html : String() +
-                '<div style = "padding: 1em; color: #fff;">' +
-                    'chat' +
+                '<div class="app-chat">' +
+                    '<div class="app-chat-head">' +
+                        '<div class="app-chat-head-toggle">+</div>' +
+                        '<div class="app-chat-head-title">chat</div>' +
+                    '</div>' +
+                    '<div class="app-chat-closer">x</div>' +
+                    '<div class="app-chat-sizer">' +
+                        '<div class="app-chat-msgs"></div>' +
+                        '<div class="app-chat-box">' +
+                            '<input type="text" />' +
+                            '<div>send</div>' +
+                        '</div>' +
+                    '</div>' +
                 '</div>',
                 settable_map : {}
         },
