@@ -31,10 +31,10 @@ app.util = ( function () {
                 }
             }
         }
-        
-        return {
+    };
+    
+    return {
             makeError : makeError,
             setConfigMap : setConfigMap
-        };
     };
 } () );

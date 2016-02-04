@@ -28,10 +28,17 @@ app.shell = (function () {
           anchor_map : {}
       },
       jqueryMap = {},
-      setJqueryMap, initModule, onClickChat, copyAnchorMap, changeAnchorPart, onHasChange, setChatAnchor;
+      setJqueryMap, initModule, copyAnchorMap, changeAnchorPart, onHasChange, setChatAnchor;
       
       copyAnchorMap = function () {
           return $.extend( true, {}, stateMap.anchor_map );
+      };
+      
+      setJqueryMap = function () {
+          var $container = stateMap.$container;
+          jqueryMap = { 
+              $container : $container
+          };
       };
       
       changeAnchorPart = function ( arg_map ) {
@@ -120,20 +127,6 @@ app.shell = (function () {
       
       setChatAnchor = function ( position_type ) {
           return changeAnchorPart( { chat : position_type } );
-      };
-      
-      setJqueryMap = function () {
-          var $container = stateMap.$container;
-          jqueryMap = { 
-              $container : $container
-          };
-      };
-      
-      onClickChat = function ( event ) {
-          changeAnchorPart({
-              chat : ( stateMap.is_chat_retracted ? 'open' : 'closed' )
-          });
-          return false;
       };
       
       initModule = function ( $container ) {
