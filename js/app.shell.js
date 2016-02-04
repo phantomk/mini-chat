@@ -2,7 +2,7 @@ app.shell = (function () {
     var 
       configMap = {
         anchor_schema_map : {
-            chat : { open : true, closed : true }
+            chat : { opened : true, closed : true }
         },
         main_html : String() +
           '<div class="app-shell-head">' + 
@@ -25,12 +25,10 @@ app.shell = (function () {
         chat_retracted_title : '点击展开' 
       },
       stateMap = { 
-          $container : null,
-          anchor_map : {},
-          is_chat_retracted : true
+          anchor_map : {}
       },
       jqueryMap = {},
-      setJqueryMap, initModule, toggleChat, onClickChat, copyAnchorMap, changeAnchorPart, onHasChange;
+      setJqueryMap, initModule, onClickChat, copyAnchorMap, changeAnchorPart, onHasChange, setChatAnchor;
       
       copyAnchorMap = function () {
           return $.extend( true, {}, stateMap.anchor_map );
@@ -75,6 +73,7 @@ app.shell = (function () {
       onHasChange = function ( event ) {
           var
             anchor_map_previous = copyAnchorMap(),
+            is_ok = true,
             anchor_map_proposed, _s_chat_previous, _s_chat_proposed, s_chat_proposed;
             
           try {
@@ -92,69 +91,42 @@ app.shell = (function () {
           if ( ! anchor_map_previous || _s_chat_previous !== _s_chat_proposed ) {
               s_chat_proposed = anchor_map_proposed.chat;
               switch ( s_chat_proposed ) {
-                  case 'open' :
-                    toggleChat( true );
+                  case 'opened' :
+                    is_ok = app.chat.setSliderPosition( 'opened' );
                   break;
                   case 'closed' :
-                    toggleChat( false );
+                    is_ok = app.chat.setSliderPosition( 'closed' );
                   break;
                   default :
-                    toggleChat( false );
+                    app.chat.setSliderPosition( 'closed' );
                     delete anchor_map_proposed.chat;
                     $.uriAnchor.setAnchor( anchor_map_proposed, null, true );
               }
           }
           
+          if ( ! is_ok ) {
+            if ( anchor_map_previous ) {
+                $.uriAnchor.setAnchor( anchor_map_previous, null, true );
+                stateMap.anchor_map = anchor_map_previous;
+            }
+            else {
+                delete anchor_map_proposed.chat;
+                $.uriAnchor.setAnchor( anchor_map_proposed, null, true );
+            }
+          }
+          
           return false;
+      };
+      
+      setChatAnchor = function ( position_type ) {
+          return changeAnchorPart( { chat : position_type } );
       };
       
       setJqueryMap = function () {
           var $container = stateMap.$container;
           jqueryMap = { 
-              $container : $container,
-              $chat : $container.find( '.app-shell-chat' ) 
+              $container : $container
           };
-      };
-      
-      toggleChat = function ( do_extrend, callback ) {
-          var
-            px_chat_ht = jqueryMap.$chat.height(),
-            is_open = px_chat_ht === configMap.chat_extend_height,
-            is_closed = px_chat_ht === configMap.chat_retract_height,
-            is_sliding = ! is_open && ! is_closed;
-          
-          if ( is_sliding ) {
-              return false;
-          }
-          
-          if ( do_extrend ) {
-              jqueryMap.$chat.animate(
-                  { height : configMap.chat_extend_height },
-                  configMap.chat_extend_time,
-                  function () {
-                      jqueryMap.$chat.attr( 'title', configMap.chat_extended_title );
-                      stateMap.is_chat_retracted = false;
-                      if ( callback ) {
-                          callback( jqueryMap.$chat );
-                      }
-                  }
-              );
-              return true;
-          }
-          
-          jqueryMap.$chat.animate(
-            { height : configMap.chat_retract_height },
-            configMap.chat_retract_time,
-            function () {
-                jqueryMap.$chat.attr( 'title', configMap.chat_retracted_title );
-                stateMap.is_chat_retracted = true;
-                if ( callback ) {
-                    callback( jqueryMap.$chat );
-                }
-            }  
-          );
-          
-          return true;    
       };
       
       onClickChat = function ( event ) {
@@ -168,23 +140,22 @@ app.shell = (function () {
           stateMap.$container = $container;
           $container.html( configMap.main_html );
           setJqueryMap();
+      
+          $.uriAnchor.configModule({
+            schema_map : configMap.anchor_schema_map
+          });
           
-          stateMap.is_chat_retracted = true;
-          jqueryMap.$chat
-            .attr( 'title', configMap.chat_retracted_title )
-            .click( onClickChat );
+          app.chat.configModule({
+            set_chat_anchor : setChatAnchor,
+            chat_model      : app.model.chat,
+            people_model    : app.model.people
+          });
+          app.chat.initModule( jqueryMap.$container );
+      
+          $(window)
+            .bind( 'hashchange', onHasChange )
+            .trigger( 'hashchange' );
       };
-      
-      $.uriAnchor.configModule({
-          schema_map : configMap.anchor_schema_map
-      });
-      
-      app.chat.configModule( {} );
-      app.chat.initModule( jqueryMap.$chat );
-      
-      $(window)
-        .bind( 'hashchange', onHasChange )
-        .trigger( 'hashchange' );
       
       return { initModule : initModule };   
 } () );
