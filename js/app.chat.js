@@ -157,14 +157,21 @@ app.chat = ( function () {
         return true;
     };
     
-    initModule = function ( $container ) { 
-        $container.html( configMap.main_html );
-        stateMap.$container = $container;
+    initModule = function ( $append_target ) { 
+        $append_target.append( configMap.main_html );
+        stateMap.$append_target = $append_target;
         setJqueryMap();
+        setPxSizes();
+        
+        jqueryMap.$toggle.prop( 'title', configMap.slider_closed_title );
+        jqueryMap.$head.click( onClickToggle );
+        stateMap.position_type = 'closed';
+
         return true;
     };
     
     return {
+        setSliderPosition : setSliderPosition,
         configModule : configModule,
         initModule : initModule
     };
