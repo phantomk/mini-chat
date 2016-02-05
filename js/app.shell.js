@@ -15,14 +15,7 @@ app.shell = (function () {
             '<div class="app-shell-main-content"></div>' +
           '</div>' +
           '<div class="app-shell-footer"></div>' +
-          '<div class="app-shell-chat"></div>' +
           '<div class="app-shell-modal"></div>',
-        chat_extend_time    : 1000,
-        chat_retract_time   : 300,
-        chat_extend_height  : 450,
-        chat_retract_height : 15,
-        chat_extended_title  : '点击关闭',
-        chat_retracted_title : '点击展开' 
       },
       stateMap = { 
           anchor_map : {}

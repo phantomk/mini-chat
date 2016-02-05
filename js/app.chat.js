@@ -80,7 +80,7 @@ app.chat = ( function () {
         stateMap.slider_closed_px = configMap.slider_closed_em * px_per_em;
         stateMap.slider_opened_px = opened_height_em * px_per_em;
         
-        jqueryMap.$slider.css({
+        jqueryMap.$sizer.css({
             height : ( opened_height_em -2 ) * px_per_em
         });
     };
