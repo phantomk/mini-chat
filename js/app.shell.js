@@ -4,6 +4,7 @@ app.shell = (function () {
         anchor_schema_map : {
             chat : { opened : true, closed : true }
         },
+        resize_interval : 200,
         main_html : String() +
           '<div class="app-shell-head">' + 
             '<div class="app-shell-head-logo"></div>' +
@@ -17,11 +18,13 @@ app.shell = (function () {
           '<div class="app-shell-footer"></div>' +
           '<div class="app-shell-modal"></div>',
       },
-      stateMap = { 
-          anchor_map : {}
+      stateMap = {
+          $container : undefined, 
+          anchor_map : {},
+          resize_idto : undefined
       },
       jqueryMap = {},
-      setJqueryMap, initModule, copyAnchorMap, changeAnchorPart, onHasChange, setChatAnchor;
+      setJqueryMap, initModule, copyAnchorMap, changeAnchorPart, onHasChange, onResize, setChatAnchor;
       
       copyAnchorMap = function () {
           return $.extend( true, {}, stateMap.anchor_map );
@@ -118,6 +121,18 @@ app.shell = (function () {
           return false;
       };
       
+      onResize = function (){
+        if ( stateMap.resize_idto ){ return true; }
+
+        app.chat.handleResize();
+        stateMap.resize_idto = setTimeout(
+        function (){ stateMap.resize_idto = undefined; },
+        configMap.resize_interval
+        );
+
+        return true;
+    };
+      
       setChatAnchor = function ( position_type ) {
           return changeAnchorPart( { chat : position_type } );
       };
@@ -139,7 +154,8 @@ app.shell = (function () {
           app.chat.initModule( jqueryMap.$container );
       
           $(window)
-            .bind( 'hashchange', onHasChange )
+            .bind( 'resize', onResize )
+              .bind( 'hashchange', onHasChange )
             .trigger( 'hashchange' );
       };
       
