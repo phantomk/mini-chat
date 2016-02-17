@@ -7,5 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "phantomk (phantomk@foxmail.com)",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "connect": "^3.4.0",
+    "express": "^4.13.4",
+    "socket.io": "^1.4.5"
+  }
 }
