@@ -4,13 +4,18 @@
   "description": "chat-server",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./bin/www"
   },
   "author": "phantomk (phantomk@foxmail.com)",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.15.0",
     "connect": "^3.4.0",
+    "cookie-parser": "^1.4.1",
+    "debug": "^2.2.0",
     "express": "^4.13.4",
+    "morgan": "^1.7.0",
+    "serve-favicon": "^2.3.0",
     "socket.io": "^1.4.5"
   }
 }
